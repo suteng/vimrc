@@ -494,9 +494,9 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 
 
 "for visual selection
-"Bundle 'terryma/vim-expand-region'
-"map = <Plug>(expand_region_expand)
-"map - <Plug>(expand_region_shrink)
+Plugin 'terryma/vim-expand-region'
+map = <Plug>(expand_region_expand)
+map - <Plug>(expand_region_shrink)
 
 "for mutil cursor
 "Bundle 'terryma/vim-multiple-cursors'
@@ -556,7 +556,7 @@ let g:vim_markdown_folding_disabled=1
 Plugin 'lyuts/vim-rtags'
 
 "################### 其他 ###################"
-" for git 尚未用起来
+Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
 
 "edit history, 可以查看回到某个历史状态
