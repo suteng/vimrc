@@ -107,7 +107,7 @@ set mouse=a
 set cindent
 set smartindent
 set autoindent    " always set autoindenting on
-
+set autochdir
 set tabstop=2                " 设置Tab键的宽度        [等同的空格个数]
 set shiftwidth=2  " number of spaces to use for autoindenting
 set softtabstop=2             " 按退格键时可以一次删掉 4 个空格
@@ -319,13 +319,13 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 "python dependent:  pep8, pyflake
 
 filetype off " required! turn off
-set rtp+=~/.vim/bundle/vundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 "################### 插件管理 ###################"
 
 "使用Vundle来管理Vundle
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 " vim plugin bundle control, command model
 " :BundleInstall     install
 " :BundleInstall!    update
@@ -554,6 +554,10 @@ let g:vim_markdown_folding_disabled=1
 
 
 Plugin 'lyuts/vim-rtags'
+
+"# golang plugin 
+Plugin 'fatih/vim-go'
+
 
 "################### 其他 ###################"
 Plugin 'tpope/vim-git'
