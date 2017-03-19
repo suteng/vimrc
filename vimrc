@@ -133,7 +133,7 @@ set ttyfast
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 if v:version >= 730
-    set undofile                " keep a persistent backup file
+"    set undofile                " keep a persistent backup file
     set undodir=~./vimtmp/
 endif
 
@@ -399,7 +399,7 @@ let g:tagbar_autofocus = 1
 "let Tlist_WinWidth = 25
 
 "for file search ctrlp, 文件搜索
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 map <leader>f :CtrlPMRU<CR>
@@ -467,7 +467,7 @@ Plugin 'SirVer/ultisnips'
 "let g:UltiSnipsExpandTrigger = "<tab>"
 "let g:UltiSnipsJumpForwardTrigger = "<tab>"
 "定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
-let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
+"let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
 
 "快速 加减注释
 Plugin 'scrooloose/nerdcommenter'
@@ -477,8 +477,8 @@ Plugin 'tpope/vim-surround'
 "for repeat -> enhance surround.vim, . to repeat command
 Plugin 'tpope/vim-repeat'
 
-Plugin 'vim-ctrlspace/vim-ctrlspace'
- 
+"Plugin 'vim-ctrlspace/vim-ctrlspace'
+
 "自动补全单引号，双引号等
 Plugin 'Raimondi/delimitMate'
 " for python docstring ",优化输入
@@ -562,7 +562,6 @@ Plugin 'fatih/vim-go'
 
 
 "################### 其他 ###################"
-Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
 
 "edit history, 可以查看回到某个历史状态
