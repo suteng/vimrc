@@ -477,6 +477,8 @@ Plugin 'tpope/vim-surround'
 "for repeat -> enhance surround.vim, . to repeat command
 Plugin 'tpope/vim-repeat'
 
+Plugin 'vim-ctrlspace/vim-ctrlspace'
+ 
 "自动补全单引号，双引号等
 Plugin 'Raimondi/delimitMate'
 " for python docstring ",优化输入
