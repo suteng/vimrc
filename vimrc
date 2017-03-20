@@ -307,6 +307,10 @@ map <leader>tm :tabmove
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
+" quickfix ops
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
 
 
 "==========================================
@@ -335,19 +339,6 @@ let g:netrw_home='~/bak'
 "close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 minibufferexpl                          "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""for minibufferexpl
-"Bundle 'fholgado/minibufexpl.vim'
-"let g:miniBufExplMapWindowNavVim = 1
-"let g:miniBufExplMapWindowNavArrows = 1
-"let g:miniBufExplMapCTabSwitchBufs = 1
-"let g:miniBufExplModSelTarget = 1
-""解决FileExplorer窗口变小问题
-"let g:miniBufExplForceSyntaxEnable = 1
-"let g:miniBufExplorerMoreThanOne=2
-"let g:miniBufExplCycleArround=1
 
 "" 默认方向键左右可以切换buffer
 "nnoremap <TAB> :MBEbn<CR>
@@ -359,38 +350,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 Plug 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 taglist                                 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""标签导航 要装ctags
-"Bundle 'vim-scripts/taglist.vim'
-"set tags=tags;/
-"let Tlist_Ctags_Cmd="/usr/bin/ctags"
-"nnoremap <silent> <F8> :TlistToggle<CR>
-"let Tlist_Auto_Highlight_Tag = 1
-"let Tlist_Auto_Open = 0
-"let Tlist_Auto_Update = 1
-"let Tlist_Close_On_Select = 0
-"let Tlist_Compact_Format = 0
-"let Tlist_Display_Prototype = 0
-"let Tlist_Display_Tag_Scope = 1
-"let Tlist_Enable_Fold_Column = 0
-"let Tlist_Exit_OnlyWindow = 1
-"let Tlist_File_Fold_Auto_Close = 0
-"let Tlist_GainFocus_On_ToggleOpen = 1
-"let Tlist_Hightlight_Tag_On_BufEnter = 1
-"let Tlist_Inc_Winwidth = 0
-"let Tlist_Max_Submenu_Items = 1
-"let Tlist_Max_Tag_Length = 30
-"let Tlist_Process_File_Always = 0
-"let Tlist_Show_Menu = 0
-"let Tlist_Show_One_File = 1
-"let Tlist_Sort_Type = "order"
-"let Tlist_Use_Horiz_Window = 0
-"let Tlist_Use_Right_Window = 0
-"let Tlist_WinWidth = 25
 
 "for file search ctrlp, 文件搜索
 Plug 'ctrlpvim/ctrlp.vim'
@@ -493,16 +452,6 @@ Plug 'terryma/vim-expand-region'
 map = <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
 
-"for mutil cursor
-"Bundle 'terryma/vim-multiple-cursors'
-"let g:multi_cursor_use_default_mapping=0
-"" Default mapping
-"let g:multi_cursor_next_key='<C-m>'
-"let g:multi_cursor_prev_key='<C-p>'
-"let g:multi_cursor_skip_key='<C-x>'
-"let g:multi_cursor_quit_key='<Esc>'
-
-
 "################# 语法检查 ###############
 
 " 编辑时自动语法检查标红, vim-flake8目前还不支持,所以多装一个
@@ -530,29 +479,19 @@ let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
 "################# 具体语言语法高亮 ###############
 
 " for python.vim syntax highlight
-"Bundle 'hdima/python-syntax'
-"let python_highlight_all = 1
-
-" for golang
-"Bundle 'jnwhiteh/vim-golang'
-"Bundle 'Blackrush/vim-gocode'
+Plug 'hdima/python-syntax'
+let python_highlight_all = 1
 
 " for markdown
 Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled=1
 
-" for javascript
-"Bundle "pangloss/vim-javascript"
-"let g:html_indent_inctags = "html,body,head,tbody"
-"let g:html_indent_script1 = "inc"
-"let g:html_indent_style1 = "inc"
-
 
 Plug 'lyuts/vim-rtags'
 
 "# golang plugin 
-Plug 'fatih/vim-go'
-
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+let g:go_list_type = "quickfix"
 
 "################### 其他 ###################"
 Plug 'tpope/vim-fugitive'
@@ -560,6 +499,7 @@ Plug 'tpope/vim-fugitive'
 "edit history, 可以查看回到某个历史状态
 Plug 'sjl/gundo.vim'
 nnoremap <leader>h :GundoToggle<CR>
+
 " end turn on
 filetype plugin indent on
 
@@ -577,8 +517,8 @@ syntax on
 
 
 " 修改主题和颜色展示
-
 if has("gui_running")
+  set guifont=Monaco:h12
   colorscheme solarized
   set background=dark
   set t_Co=256
