@@ -319,21 +319,15 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 "python dependent:  pep8, pyflake
 
 filetype off " required! turn off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+
+call plug#begin('~/.vim/plugged')
 
 "################### 插件管理 ###################"
 
-"使用Vundle来管理Vundle
-Plugin 'gmarik/Vundle.vim'
-" vim plugin bundle control, command model
-" :BundleInstall     install
-" :BundleInstall!    update
-" :BundleClean       remove plugin not in list
 
 "################### 导航 ###################"
 "目录导航
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
@@ -362,7 +356,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 "noremap <leader>bd :MBEbd<CR>
 
 "标签导航
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
@@ -399,7 +393,7 @@ let g:tagbar_autofocus = 1
 "let Tlist_WinWidth = 25
 
 "for file search ctrlp, 文件搜索
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 map <leader>f :CtrlPMRU<CR>
@@ -418,12 +412,12 @@ let g:ctrlp_follow_symlinks=1
 
 
 "for show no user whitespaces
-Plugin 'bronson/vim-trailing-whitespace'
+Plug 'bronson/vim-trailing-whitespace'
 map <leader><space> :FixWhitespace<cr>
 
 
 "主题 solarized
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 "let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
@@ -436,14 +430,14 @@ let g:solarized_visibility="normal"
 "################### 快速移动 ###################"
 
 "更高效的移动 ,, + w/fx
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 
-Plugin 'vim-scripts/matchit.zip'
+Plug 'vim-scripts/matchit.zip'
 
 "################### 补全及快速编辑 ###################"
 
 "迄今为止用到的最好的自动VIM自动补全插件
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 "youcompleteme  默认tab  s-tab 和自动补全冲突
 "let g:ycm_key_list_select_completion=['<c-n>']
 "let g:ycm_key_list_select_completion = ['<Down>']
@@ -459,28 +453,27 @@ nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 
 "快速插入代码片段
-"Bundle 'vim-scripts/UltiSnips'
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 "let g:UltiSnipsExpandTrigger = "<tab>"
 "let g:UltiSnipsJumpForwardTrigger = "<tab>"
 "定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
 "let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
 
 "快速 加减注释
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " 快速加入修改环绕字符
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 "for repeat -> enhance surround.vim, . to repeat command
-Plugin 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'
 
-"Plugin 'vim-ctrlspace/vim-ctrlspace'
 
 "自动补全单引号，双引号等
-Plugin 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 " for python docstring ",优化输入
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 
@@ -488,7 +481,7 @@ let g:closetag_html_style=1
 
 
 "for code alignment
-Plugin 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
@@ -496,7 +489,7 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 
 
 "for visual selection
-Plugin 'terryma/vim-expand-region'
+Plug 'terryma/vim-expand-region'
 map = <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
 
@@ -514,7 +507,7 @@ map - <Plug>(expand_region_shrink)
 
 " 编辑时自动语法检查标红, vim-flake8目前还不支持,所以多装一个
 " 使用pyflakes,速度比pylint快
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 let g:syntastic_error_symbol = 'x'
 let g:syntastic_warning_symbol = '?'
 let g:syntastic_always_populate_loc_list = 1
@@ -545,7 +538,7 @@ let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
 "Bundle 'Blackrush/vim-gocode'
 
 " for markdown
-Plugin 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled=1
 
 " for javascript
@@ -555,22 +548,23 @@ let g:vim_markdown_folding_disabled=1
 "let g:html_indent_style1 = "inc"
 
 
-Plugin 'lyuts/vim-rtags'
+Plug 'lyuts/vim-rtags'
 
 "# golang plugin 
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
 
 "################### 其他 ###################"
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 "edit history, 可以查看回到某个历史状态
-Plugin 'sjl/gundo.vim'
+Plug 'sjl/gundo.vim'
 nnoremap <leader>h :GundoToggle<CR>
 " end turn on
 filetype plugin indent on
 
-call vundle#end()
+
+call plug#end()
 "========================== config for plugins end ======================================
 
 
@@ -584,11 +578,11 @@ syntax on
 
 " 修改主题和颜色展示
 
-"if has("gui_running")
+if has("gui_running")
   colorscheme solarized
   set background=dark
   set t_Co=256
-"endif
+endif
 
 "colorscheme molokai
 "colorscheme desert
