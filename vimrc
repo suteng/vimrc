@@ -308,9 +308,9 @@ map <leader>tm :tabmove
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " quickfix ops
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
+"map <C-n> :cnext<CR>
+"map <C-m> :cprevious<CR>
+"nnoremap <leader>a :cclose<CR>
 
 
 "==========================================
@@ -402,8 +402,14 @@ Plug 'Valloric/YouCompleteMe'
 "let g:ycm_key_list_select_completion = ['<Down>']
 "let g:ycm_key_list_previous_completion=['<c-p>']
 "let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
+let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
+let g:ycm_use_ultisnips_completer = 1 "提示UltiSnips
+let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_identifier_candidate_chars = 3
+" 开启语法关键字补全
+let g:ycm_seed_identifiers_with_syntax=1
 "let g:ycm_extra_conf_globlist = ['~/repos/*']
 "let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 
@@ -417,10 +423,14 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 "快速插入代码片段
 Plug 'SirVer/ultisnips'
-"let g:UltiSnipsExpandTrigger = "<tab>"
-"let g:UltiSnipsJumpForwardTrigger = "<tab>"
+Plug 'honza/vim-snippets'
 "定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
-"let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["mysnippets", "plugged/vim-snippets/UltiSnips"]
+let g:UltiSnipsExpandTrigger = "<cr>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+
 
 "快速 加减注释
 Plug 'scrooloose/nerdcommenter'
@@ -491,7 +501,7 @@ Plug 'lyuts/vim-rtags'
 
 "# golang plugin 
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-let g:go_list_type = "quickfix"
+"let g:go_list_type = "quickfix"
 
 "################### 其他 ###################"
 Plug 'tpope/vim-fugitive'
@@ -499,6 +509,8 @@ Plug 'tpope/vim-fugitive'
 "edit history, 可以查看回到某个历史状态
 Plug 'sjl/gundo.vim'
 nnoremap <leader>h :GundoToggle<CR>
+
+Plug 'YankRing.vim'
 
 " end turn on
 filetype plugin indent on
