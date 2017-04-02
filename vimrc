@@ -439,8 +439,7 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets = "<c-m-s>"
 
-
-
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 "快速 加减注释
 Plug 'scrooloose/nerdcommenter'
