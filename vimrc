@@ -426,9 +426,11 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 "定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
 let g:UltiSnipsSnippetDirectories=["mysnippets", "plugged/vim-snippets/UltiSnips"]
-let g:UltiSnipsExpandTrigger = "<cr>"
+let g:UltiSnipsExpandTrigger = "<c-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsListSnippets = "<c-m-s>"
+
 
 
 
