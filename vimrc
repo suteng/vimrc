@@ -307,6 +307,14 @@ map <leader>tm :tabmove
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
+" The alt (option) key on macs now behaves like the 'meta' key. This means we
+" can now use <m-x> or similar as maps. This is buffer local, and it can easily
+" be turned off when necessary (for instance, when we want to input special
+" characters) with :set nomacmeta.
+if has("gui_macvim")
+  set macmeta
+endif
+
 " quickfix ops
 "map <C-n> :cnext<CR>
 "map <C-m> :cprevious<CR>
