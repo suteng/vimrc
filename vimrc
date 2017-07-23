@@ -389,6 +389,26 @@ Plug 'altercation/vim-colors-solarized'
 let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
+" 状态栏增强展示
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" ################### 显示增强 ###################
+
+" airline {{{
+    "if !exists('g:airline_symbols')
+        "let g:airline_symbols = {}
+    "endif
+    "let g:airline_left_sep = '▶'
+    "let g:airline_left_alt_sep = '❯'
+    "let g:airline_right_sep = '◀'
+    "let g:airline_right_alt_sep = '❮'
+    "let g:airline_symbols.linenr = '¶'
+    "let g:airline_symbols.branch = '⎇'
+    " 是否打开tabline
+    " let g:airline#extensions#tabline#enabled = 1
+" }}}
+
 
 "主题 molokai
 "Bundle 'tomasr/molokai'
@@ -514,6 +534,28 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 "################### 其他 ###################"
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+" fugitive {{{
+    " :Gdiff  :Gstatus :Gvsplit
+    nnoremap <leader>ge :Gdiff<CR>
+    " not ready to open
+    " <leader>gb maps to :Gblame<CR>
+    " <leader>gs maps to :Gstatus<CR>
+    " <leader>gd maps to :Gdiff<CR>  和现有冲突
+    " <leader>gl maps to :Glog<CR>
+    " <leader>gc maps to :Gcommit<CR>
+    " <leader>gp maps to :Git push<CR>
+" }}}
+
+" gitgutter {{{
+    " 同git diff,实时展示文件中修改的行
+    " 只是不喜欢除了行号多一列, 默认关闭,gs时打开
+    let g:gitgutter_map_keys = 0
+    let g:gitgutter_enabled = 0
+    let g:gitgutter_highlight_lines = 1
+    nnoremap <leader>gs :GitGutterToggle<CR>
+" }}}
 
 "edit history, 可以查看回到某个历史状态
 Plug 'sjl/gundo.vim'
@@ -540,10 +582,12 @@ syntax on
 " 修改主题和颜色展示
 if has("gui_running")
   set guifont=Monaco:h12
-  colorscheme solarized
-  set background=dark
   set t_Co=256
+  colorscheme solarized
 endif
+
+set background=dark
+set t_Co=256
 
 "colorscheme molokai
 "colorscheme desert
