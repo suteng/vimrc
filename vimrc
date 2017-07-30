@@ -563,6 +563,9 @@ nnoremap <leader>h :GundoToggle<CR>
 
 Plug 'YankRing.vim'
 
+Plug 'lfv89/vim-interestingwords'
+
+
 " end turn on
 filetype plugin indent on
 
