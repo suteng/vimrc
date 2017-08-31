@@ -255,6 +255,9 @@ noremap <leader>l <c-w>l
 noremap <leader>k <c-w>k
 noremap <leader>j <c-w>j
 
+noremap <leader>e :e<Space>
+noremap <leader>w :w<CR>
+
 " Go to home and end using capitalized directions
 noremap H 0
 noremap L $
@@ -364,7 +367,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 map <leader>f :CtrlPMRU<CR>
-"set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
+map <leader>p :CtrlPRoot<CR>
+map <leader>b :CtrlPBuffer<CR>
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip    " MacOSX/Linux"
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
@@ -446,7 +451,7 @@ nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+"Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 
 "快速插入代码片段
@@ -526,36 +531,35 @@ Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled=1
 
 
-Plug 'lyuts/vim-rtags'
 
-"# golang plugin 
+"# golang plugin
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 "let g:go_list_type = "quickfix"
 
 "################### 其他 ###################"
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+"Plug 'tpope/vim-fugitive'
+"Plug 'airblade/vim-gitgutter'
 
-" fugitive {{{
-    " :Gdiff  :Gstatus :Gvsplit
-    nnoremap <leader>ge :Gdiff<CR>
-    " not ready to open
-    " <leader>gb maps to :Gblame<CR>
-    " <leader>gs maps to :Gstatus<CR>
-    " <leader>gd maps to :Gdiff<CR>  和现有冲突
-    " <leader>gl maps to :Glog<CR>
-    " <leader>gc maps to :Gcommit<CR>
-    " <leader>gp maps to :Git push<CR>
-" }}}
+"" fugitive {{{
+    "" :Gdiff  :Gstatus :Gvsplit
+    "nnoremap <leader>ge :Gdiff<CR>
+    "" not ready to open
+    "" <leader>gb maps to :Gblame<CR>
+    "" <leader>gs maps to :Gstatus<CR>
+    "" <leader>gd maps to :Gdiff<CR>  和现有冲突
+    "" <leader>gl maps to :Glog<CR>
+    "" <leader>gc maps to :Gcommit<CR>
+    "" <leader>gp maps to :Git push<CR>
+"" }}}
 
-" gitgutter {{{
-    " 同git diff,实时展示文件中修改的行
-    " 只是不喜欢除了行号多一列, 默认关闭,gs时打开
-    let g:gitgutter_map_keys = 0
-    let g:gitgutter_enabled = 0
-    let g:gitgutter_highlight_lines = 1
-    nnoremap <leader>gs :GitGutterToggle<CR>
-" }}}
+"" gitgutter {{{
+    "" 同git diff,实时展示文件中修改的行
+    "" 只是不喜欢除了行号多一列, 默认关闭,gs时打开
+    "let g:gitgutter_map_keys = 0
+    "let g:gitgutter_enabled = 0
+    "let g:gitgutter_highlight_lines = 1
+    "nnoremap <leader>gs :GitGutterToggle<CR>
+"" }}}
 
 "edit history, 可以查看回到某个历史状态
 Plug 'sjl/gundo.vim'
@@ -564,6 +568,7 @@ nnoremap <leader>h :GundoToggle<CR>
 Plug 'YankRing.vim'
 
 Plug 'lfv89/vim-interestingwords'
+Plug 'lyuts/vim-rtags'
 
 
 " end turn on
