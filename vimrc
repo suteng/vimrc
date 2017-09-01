@@ -451,7 +451,8 @@ nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 
-"Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'jeaye/color_coded'
 
 
 "快速插入代码片段
