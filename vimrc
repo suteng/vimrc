@@ -497,28 +497,51 @@ map = <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
 
 "################# 语法检查 ###############
+Plug 'w0rp/ale'
+" ale {{{
+if has_key(g:plugs, 'ale')
+    " pip install flake8
+    " npm install -g eslint eslint-plugin-standard eslint-plugin-promise eslint-config-standard
+    " npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-html babel-eslint
+    let g:ale_linters = {
+    \   'python': ['flake8'],
+    \   'javascript': ['eslint'],
+    \}
 
-" 编辑时自动语法检查标红, vim-flake8目前还不支持,所以多装一个
-" 使用pyflakes,速度比pylint快
-Plug 'scrooloose/syntastic'
-let g:syntastic_error_symbol = 'x'
-let g:syntastic_warning_symbol = '?'
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
+    " E501 -> 120 chars
+    let g:ale_python_flake8_args="--ignore=E114,E116,E131 --max-line-length=120"
+    " --ignore=E225,E124,E712,E116
 
-"let g:syntastic_error_symbol='>>'
-"let g:syntastic_warning_symbol='>'
-"let g:syntastic_check_on_open=1
-"let g:syntastic_enable_highlighting = 0
-"let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
-"let g:syntastic_python_checkers=['pyflakes']
-"highlight SyntasticErrorSign guifg=white guibg=black
+    let g:ale_sign_error = '>>'
+    let g:ale_sign_warning = '>'
 
-" python fly check, 弥补syntastic只能打开和保存才检查语法的不足
-"Bundle 'kevinw/pyflakes-vim'
-"let g:pyflakes_use_quickfix = 0
+    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+    let g:ale_echo_msg_error_str = 'E'
+    let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
+    nmap <silent> <Leader>ep <Plug>(ale_previous_wrap)
+    nmap <silent> <Leader>en <Plug>(ale_next_wrap)
+
+    nnoremap <silent> <Leader>ec :ALEToggle<CR>
+
+    " troggle quickfix list
+    function! ToggleErrors()
+        let old_last_winnr = winnr('$')
+        lclose
+        if old_last_winnr == winnr('$')
+            " Nothing was closed, open syntastic_error location panel
+            lopen
+        endif
+    endfunction
+    nnoremap <Leader>s :call ToggleErrors()<cr>
+
+    let g:ale_set_highlights = 1
+    highlight clear ALEErrorSign
+    highlight clear ALEWarningSign
+endif
+
+" }}}
 
 "################# 具体语言语法高亮 ###############
 
