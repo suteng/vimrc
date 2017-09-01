@@ -457,12 +457,36 @@ nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 "快速插入代码片段
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-"定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
-let g:UltiSnipsSnippetDirectories=["mysnippets", "plugged/vim-snippets/UltiSnips"]
-let g:UltiSnipsExpandTrigger = "<c-tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsListSnippets = "<c-m-s>"
+" ultisnips {{{
+    let g:UltiSnipsExpandTrigger       = "<tab>"
+    let g:UltiSnipsJumpForwardTrigger  = "<tab>"
+    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+    let g:UltiSnipsSnippetDirectories  = ['UltiSnips']
+    let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
+    " 定义存放代码片段的文件夹 .vim/UltiSnips下，使用自定义和默认的，将会的到全局，有冲突的会提示
+    " 进入对应filetype的snippets进行编辑
+    map <leader>us :UltiSnipsEdit<CR>
+
+    " ctrl+j/k 进行选择
+    func! g:JInYCM()
+        if pumvisible()
+            return "\<C-n>"
+        else
+            return "\<c-j>"
+        endif
+    endfunction
+
+    func! g:KInYCM()
+        if pumvisible()
+            return "\<C-p>"
+        else
+            return "\<c-k>"
+        endif
+    endfunction
+    inoremap <c-j> <c-r>=g:JInYCM()<cr>
+    au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:KInYCM()<cr>"
+    let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
+" }}}
 
 Plug 'octol/vim-cpp-enhanced-highlight'
 
@@ -473,7 +497,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 "for repeat -> enhance surround.vim, . to repeat command
 Plug 'tpope/vim-repeat'
-
 
 "自动补全单引号，双引号等
 Plug 'Raimondi/delimitMate'
@@ -560,29 +583,9 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 "let g:go_list_type = "quickfix"
 
 "################### 其他 ###################"
-"Plug 'tpope/vim-fugitive'
-"Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
-"" fugitive {{{
-    "" :Gdiff  :Gstatus :Gvsplit
-    "nnoremap <leader>ge :Gdiff<CR>
-    "" not ready to open
-    "" <leader>gb maps to :Gblame<CR>
-    "" <leader>gs maps to :Gstatus<CR>
-    "" <leader>gd maps to :Gdiff<CR>  和现有冲突
-    "" <leader>gl maps to :Glog<CR>
-    "" <leader>gc maps to :Gcommit<CR>
-    "" <leader>gp maps to :Git push<CR>
-"" }}}
-
-"" gitgutter {{{
-    "" 同git diff,实时展示文件中修改的行
-    "" 只是不喜欢除了行号多一列, 默认关闭,gs时打开
-    "let g:gitgutter_map_keys = 0
-    "let g:gitgutter_enabled = 0
-    "let g:gitgutter_highlight_lines = 1
-    "nnoremap <leader>gs :GitGutterToggle<CR>
-"" }}}
 
 "edit history, 可以查看回到某个历史状态
 Plug 'sjl/gundo.vim'
