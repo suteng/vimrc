@@ -592,15 +592,19 @@ Plug 'airblade/vim-gitgutter'
 Plug 'sjl/gundo.vim'
 nnoremap <leader>h :GundoToggle<CR>
 
-Plug 'YankRing.vim'
+Plug 'vim-scripts/YankRing.vim'
 
 Plug 'lfv89/vim-interestingwords'
 Plug 'lyuts/vim-rtags'
 
+Plug 'lervag/vimtex'
+Plug 'xuhdev/vim-latex-live-preview'
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'open -a Preview'
+nmap <F12> :LLPStartPreview<cr>
 
 " end turn on
 filetype plugin indent on
-
 
 call plug#end()
 "========================== config for plugins end ======================================
