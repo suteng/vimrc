@@ -571,6 +571,8 @@ if has_key(g:plugs, 'ale')
     highlight clear ALEWarningSign
 endif
 
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
 " }}}
 
 "################# 具体语言语法高亮 ###############
@@ -602,7 +604,7 @@ Plug 'vim-scripts/YankRing.vim'
 
 Plug 'lfv89/vim-interestingwords'
 Plug 'lyuts/vim-rtags'
-let g:rtagsUseLocationList = 0
+"let g:rtagsUseLocationList = 0
 
 
 Plug 'lervag/vimtex'
@@ -610,6 +612,10 @@ Plug 'xuhdev/vim-latex-live-preview'
 autocmd Filetype tex setl updatetime=1
 let g:livepreview_previewer = 'open -a Preview'
 nmap <F12> :LLPStartPreview<cr>
+
+if has('mac')
+Plug 'CodeFalling/fcitx-vim-osx'
+endif
 
 " end turn on
 filetype plugin indent on
