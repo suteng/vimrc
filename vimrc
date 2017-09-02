@@ -445,6 +445,7 @@ let g:ycm_min_num_identifier_candidate_chars = 3
 let g:ycm_seed_identifiers_with_syntax=1
 "let g:ycm_extra_conf_globlist = ['~/repos/*']
 "let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
+let g:ycm_python_binary_path = 'python3'
 
 nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
 nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -452,7 +453,12 @@ nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+
 Plug 'jeaye/color_coded'
+let g:color_coded_enabled = 1
+let g:color_coded_filetypes = ['c', 'cpp', 'objc']
+
+
 
 
 "快速插入代码片段
@@ -596,6 +602,8 @@ Plug 'vim-scripts/YankRing.vim'
 
 Plug 'lfv89/vim-interestingwords'
 Plug 'lyuts/vim-rtags'
+let g:rtagsUseLocationList = 0
+
 
 Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview'
