@@ -629,6 +629,8 @@ Plug 'CodeFalling/fcitx-vim-osx'
 endif
 Plug 'hwayne/tla.vim'
 
+Plug 'Chiel92/vim-autoformat'
+
 " end turn on
 filetype plugin indent on
 
