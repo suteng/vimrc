@@ -581,6 +581,16 @@ let g:airline#extensions#ale#enabled = 1
 Plug 'hdima/python-syntax'
 let python_highlight_all = 1
 
+Plug 'google/yapf'
+autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>
+
+Plug 'timothycrosley/isort' 
+autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
+
+"Plug 'python-mode/python-mode'
+
+
+
 " for markdown
 Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled=1
@@ -616,6 +626,7 @@ nmap <F12> :LLPStartPreview<cr>
 if has('mac')
 Plug 'CodeFalling/fcitx-vim-osx'
 endif
+Plug 'hwayne/tla.vim'
 
 " end turn on
 filetype plugin indent on
