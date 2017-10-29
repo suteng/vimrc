@@ -318,10 +318,6 @@ if has("gui_macvim")
   set macmeta
 endif
 
-" quickfix ops
-"map <C-n> :cnext<CR>
-"map <C-m> :cprevious<CR>
-"nnoremap <leader>a :cclose<CR>
 
 
 "==========================================
@@ -600,8 +596,29 @@ let g:vim_markdown_folding_disabled=1
 
 "# golang plugin
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+
+" quickfix ops
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
 "let g:go_list_type = "quickfix"
 
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+"
 "################### 其他 ###################"
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -630,6 +647,8 @@ endif
 Plug 'hwayne/tla.vim'
 
 Plug 'Chiel92/vim-autoformat'
+let g:formatter_yapf_style = 'google'
+
 
 " end turn on
 filetype plugin indent on
