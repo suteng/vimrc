@@ -359,26 +359,24 @@ nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 "for file search ctrlp, 文件搜索
-"Plug 'ctrlpvim/ctrlp.vim'
-"let g:ctrlp_map = '<leader>p'
-"let g:ctrlp_cmd = 'CtrlP'
-"map <leader>f :CtrlPMRU<CR>
-"map <leader>p :CtrlPRoot<CR>
-"map <leader>b :CtrlPBuffer<CR>
-"set wildignore+=*/tmp/*,*.so,*.swp,*.zip    " MacOSX/Linux"
-"let g:ctrlp_custom_ignore = {
-    "\ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-    "\ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
-    "\ }
-""\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-"let g:ctrlp_working_path_mode=0
-"let g:ctrlp_match_window_bottom=1
-"let g:ctrlp_max_height=15
-"let g:ctrlp_match_window_reversed=0
-"let g:ctrlp_mruf_max=500
-"let g:ctrlp_follow_symlinks=1
-
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_map = '<leader>p'
+let g:ctrlp_cmd = 'CtrlP'
+map <leader>f :CtrlPMRU<CR>
+map <leader>p :CtrlPRoot<CR>
+map <leader>b :CtrlPBuffer<CR>
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip    " MacOSX/Linux"
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
+    \ }
+"\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
 
 "for show no user whitespaces
 Plug 'bronson/vim-trailing-whitespace'
@@ -451,9 +449,9 @@ nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
-Plug 'jeaye/color_coded'
-let g:color_coded_enabled = 1
-let g:color_coded_filetypes = ['c', 'cpp', 'objc']
+"Plug 'jeaye/color_coded'
+"let g:color_coded_enabled = 1
+"let g:color_coded_filetypes = ['c', 'cpp', 'objc']
 
 
 
@@ -634,21 +632,19 @@ Plug 'lfv89/vim-interestingwords'
 Plug 'lyuts/vim-rtags'
 "let g:rtagsUseLocationList = 0
 
+"Plug 'lervag/vimtex'
+"Plug 'xuhdev/vim-latex-live-preview'
+"autocmd Filetype tex setl updatetime=1
+"let g:livepreview_previewer = 'open -a Preview'
+"nmap <F12> :LLPStartPreview<cr>
 
-Plug 'lervag/vimtex'
-Plug 'xuhdev/vim-latex-live-preview'
-autocmd Filetype tex setl updatetime=1
-let g:livepreview_previewer = 'open -a Preview'
-nmap <F12> :LLPStartPreview<cr>
-
-if has('mac')
-Plug 'CodeFalling/fcitx-vim-osx'
-endif
 Plug 'hwayne/tla.vim'
 
 Plug 'Chiel92/vim-autoformat'
 let g:formatter_yapf_style = 'google'
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " end turn on
 filetype plugin indent on
