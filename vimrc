@@ -346,7 +346,6 @@ let g:netrw_home='~/bak'
 "close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 
-
 "" 默认方向键左右可以切换buffer
 "nnoremap <TAB> :MBEbn<CR>
 "noremap <leader>bn :MBEbn<CR>
@@ -358,30 +357,9 @@ Plug 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
-"for file search ctrlp, 文件搜索
-Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd = 'CtrlP'
-map <leader>f :CtrlPMRU<CR>
-map <leader>p :CtrlPRoot<CR>
-map <leader>b :CtrlPBuffer<CR>
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip    " MacOSX/Linux"
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
-    \ }
-"\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_match_window_bottom=1
-let g:ctrlp_max_height=15
-let g:ctrlp_match_window_reversed=0
-let g:ctrlp_mruf_max=500
-let g:ctrlp_follow_symlinks=1
-
 "for show no user whitespaces
 Plug 'bronson/vim-trailing-whitespace'
 map <leader><space> :FixWhitespace<cr>
-
 
 "主题 solarized
 Plug 'altercation/vim-colors-solarized'
@@ -392,27 +370,6 @@ let g:solarized_visibility="normal"
 " 状态栏增强展示
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-" ################### 显示增强 ###################
-
-" airline {{{
-    "if !exists('g:airline_symbols')
-        "let g:airline_symbols = {}
-    "endif
-    "let g:airline_left_sep = '▶'
-    "let g:airline_left_alt_sep = '❯'
-    "let g:airline_right_sep = '◀'
-    "let g:airline_right_alt_sep = '❮'
-    "let g:airline_symbols.linenr = '¶'
-    "let g:airline_symbols.branch = '⎇'
-    " 是否打开tabline
-    " let g:airline#extensions#tabline#enabled = 1
-" }}}
-
-
-"主题 molokai
-"Bundle 'tomasr/molokai'
-"let g:molokai_original = 1
 
 "################### 快速移动 ###################"
 
@@ -449,48 +406,9 @@ nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
-"Plug 'jeaye/color_coded'
-"let g:color_coded_enabled = 1
-"let g:color_coded_filetypes = ['c', 'cpp', 'objc']
-
-
-
-
 "快速插入代码片段
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" ultisnips {{{
-    let g:UltiSnipsExpandTrigger       = "<tab>"
-    let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-    let g:UltiSnipsSnippetDirectories  = ['UltiSnips']
-    let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
-    " 定义存放代码片段的文件夹 .vim/UltiSnips下，使用自定义和默认的，将会的到全局，有冲突的会提示
-    " 进入对应filetype的snippets进行编辑
-    map <leader>us :UltiSnipsEdit<CR>
-
-    " ctrl+j/k 进行选择
-    func! g:JInYCM()
-        if pumvisible()
-            return "\<C-n>"
-        else
-            return "\<c-j>"
-        endif
-    endfunction
-
-    func! g:KInYCM()
-        if pumvisible()
-            return "\<C-p>"
-        else
-            return "\<c-k>"
-        endif
-    endfunction
-    inoremap <c-j> <c-r>=g:JInYCM()<cr>
-    au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:KInYCM()<cr>"
-    let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
-" }}}
-
-Plug 'octol/vim-cpp-enhanced-highlight'
 
 "快速 加减注释
 Plug 'scrooloose/nerdcommenter'
@@ -507,7 +425,6 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 let g:closetag_html_style=1
 
-
 "for code alignment
 Plug 'godlygeek/tabular'
 nmap <Leader>a= :Tabularize /=<CR>
@@ -523,73 +440,10 @@ map - <Plug>(expand_region_shrink)
 
 "################# 语法检查 ###############
 Plug 'w0rp/ale'
-" ale {{{
-if has_key(g:plugs, 'ale')
-    " pip install flake8
-    " npm install -g eslint eslint-plugin-standard eslint-plugin-promise eslint-config-standard
-    " npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-html babel-eslint
-    let g:ale_linters = {
-    \   'python': ['flake8'],
-    \   'javascript': ['eslint'],
-    \}
-
-    " E501 -> 120 chars
-    let g:ale_python_flake8_args="--ignore=E114,E116,E131 --max-line-length=120"
-    " --ignore=E225,E124,E712,E116
-
-    let g:ale_sign_error = '>>'
-    let g:ale_sign_warning = '>'
-
-    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-    let g:ale_echo_msg_error_str = 'E'
-    let g:ale_echo_msg_warning_str = 'W'
-    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-    nmap <silent> <Leader>ep <Plug>(ale_previous_wrap)
-    nmap <silent> <Leader>en <Plug>(ale_next_wrap)
-
-    nnoremap <silent> <Leader>ec :ALEToggle<CR>
-
-    " troggle quickfix list
-    function! ToggleErrors()
-        let old_last_winnr = winnr('$')
-        lclose
-        if old_last_winnr == winnr('$')
-            " Nothing was closed, open syntastic_error location panel
-            lopen
-        endif
-    endfunction
-    nnoremap <Leader>s :call ToggleErrors()<cr>
-
-    let g:ale_set_highlights = 1
-    highlight clear ALEErrorSign
-    highlight clear ALEWarningSign
-endif
-
-" Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
-" }}}
-
-"################# 具体语言语法高亮 ###############
-
-" for python.vim syntax highlight
-Plug 'hdima/python-syntax'
-let python_highlight_all = 1
-
-Plug 'google/yapf'
-autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>
-
-Plug 'timothycrosley/isort' 
-autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
-
-"Plug 'python-mode/python-mode'
-
-
 
 " for markdown
 Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled=1
-
 
 
 "# golang plugin
@@ -630,18 +484,6 @@ Plug 'vim-scripts/YankRing.vim'
 
 Plug 'lfv89/vim-interestingwords'
 Plug 'lyuts/vim-rtags'
-"let g:rtagsUseLocationList = 0
-
-"Plug 'lervag/vimtex'
-"Plug 'xuhdev/vim-latex-live-preview'
-"autocmd Filetype tex setl updatetime=1
-"let g:livepreview_previewer = 'open -a Preview'
-"nmap <F12> :LLPStartPreview<cr>
-
-Plug 'hwayne/tla.vim'
-
-Plug 'Chiel92/vim-autoformat'
-let g:formatter_yapf_style = 'google'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
