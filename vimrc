@@ -474,6 +474,7 @@ autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 "################### 其他 ###################"
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/gv.vim'
 
 
 "edit history, 可以查看回到某个历史状态
