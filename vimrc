@@ -508,7 +508,6 @@ syntax on
 " 修改主题和颜色展示
 if has("gui_running")
   set guifont=Monaco:h12
-  set t_Co=256
   colorscheme solarized
 endif
 
