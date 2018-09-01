@@ -400,10 +400,6 @@ let g:ycm_seed_identifiers_with_syntax=1
 "let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:ycm_python_binary_path = 'python3'
 
-nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
-nnoremap <leader>pg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
@@ -440,12 +436,7 @@ map = <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
 
 "################# 语法检查 ###############
-Plug 'w0rp/ale'
-
-" for markdown
-Plug 'plasticboy/vim-markdown'
-let g:vim_markdown_folding_disabled=1
-
+"Plug 'w0rp/ale'
 
 "# golang plugin
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -456,22 +447,6 @@ map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 "let g:go_list_type = "quickfix"
 
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
-autocmd FileType go nmap <leader>t  <Plug>(go-test)
-
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-
-"
 "################### 其他 ###################"
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
