@@ -465,6 +465,10 @@ Plug 'lyuts/vim-rtags'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fg :GFiles<CR>
+nnoremap <leader>f :History<CR>
+
 " end turn on
 filetype plugin indent on
 
