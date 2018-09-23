@@ -380,6 +380,15 @@ Plug 'vim-scripts/matchit.zip'
 
 "################### 补全及快速编辑 ###################"
 
+"快速插入代码片段
+Plug 'SirVer/ultisnips'
+
+let g:UltiSnipsExpandTrigger="<c-u>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+Plug 'honza/vim-snippets'
+
 "迄今为止用到的最好的自动VIM自动补全插件
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
 
@@ -400,12 +409,7 @@ let g:ycm_seed_identifiers_with_syntax=1
 "let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:ycm_python_binary_path = 'python3'
 
-
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-
-"快速插入代码片段
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 
 "快速 加减注释
 Plug 'scrooloose/nerdcommenter'
