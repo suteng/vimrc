@@ -367,6 +367,7 @@ Plug 'altercation/vim-colors-solarized'
 let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
+
 " 状态栏增强展示
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -490,12 +491,13 @@ syntax on
 
 " 修改主题和颜色展示
 if has("gui_running")
-  set guifont=Monaco:h12
+  "set guifont=Monaco:h12
   colorscheme solarized
+  set background=dark
 endif
 
-set background=dark
-set t_Co=256
+"set background=dark
+"set t_Co=256
 
 "colorscheme molokai
 "colorscheme desert
